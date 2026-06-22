@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String?
+  role         Role      @default(USER)
+  createdAt    DateTime  @default(now())
+
+  purchases      Purchase[]
+  questionnaires ConsultingQuestionnaire[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Product {
+  id            String      @id @default(cuid())
+  slug          String      @unique
+  type          ProductType
+  title         String
+  titleEn       String?
+  description   String      @db.Text
+  descriptionEn String?     @db.Text
+  price         Int
+  currency      String      @default("EUR")
+  coverImageUrl String?
+  isActive      Boolean     @default(true)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  itinerary Itinerary?
+  purchases Purchase[]
+}
+
+enum ProductType {
+  ITINERARY
+  CONSULTING
+}
+
+model Itinerary {
+  id           String   @id @default(cuid())
+  productId    String   @unique
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  destination  String
+  durationDays Int
+  content      Json
+  updatedAt    DateTime @updatedAt
+}
+
+model Purchase {
+  id              String         @id @default(cuid())
+  userId          String
+  user            User           @relation(fields: [userId], references: [id])
+  productId       String
+  product         Product        @relation(fields: [productId], references: [id])
+  stripeSessionId String         @unique
+  stripePaymentId String?
+  amountPaid      Int
+  discountCode    String?
+  status          PurchaseStatus @default(PENDING)
+  createdAt       DateTime       @default(now())
+
+  questionnaire ConsultingQuestionnaire?
+  booking       ConsultingBooking?
+}
+
+enum PurchaseStatus {
+  PENDING
+  COMPLETED
+  REFUNDED
+}
+
+model DiscountCode {
+  id             String       @id @default(cuid())
+  code           String       @unique
+  type           DiscountType
+  value          Int
+  maxUses        Int?
+  usedCount      Int          @default(0)
+  expiresAt      DateTime?
+  isActive       Boolean      @default(true)
+  stripeCouponId String?
+  createdAt      DateTime     @default(now())
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
+}
+
+model ConsultingSlot {
+  id          String   @id @default(cuid())
+  startAt     DateTime
+  endAt       DateTime
+  isAvailable Boolean  @default(true)
+
+  booking ConsultingBooking?
+}
+
+model ConsultingBooking {
+  id          String         @id @default(cuid())
+  purchaseId  String         @unique
+  purchase    Purchase       @relation(fields: [purchaseId], references: [id])
+  slotId      String         @unique
+  slot        ConsultingSlot @relation(fields: [slotId], references: [id])
+  confirmedAt DateTime       @default(now())
+}
+
+model ConsultingQuestionnaire {
+  id          String   @id @default(cuid())
+  purchaseId  String   @unique
+  purchase    Purchase @relation(fields: [purchaseId], references: [id])
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  answers     Json
+  submittedAt DateTime @default(now())
+}
+
+model ExchangeRate {
+  id           String   @id @default(cuid())
+  fromCurrency String
+  toCurrency   String
+  rate         Float
+  updatedAt    DateTime @updatedAt
+
+  @@unique([fromCurrency, toCurrency])
+}

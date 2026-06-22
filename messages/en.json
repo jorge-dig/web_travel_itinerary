@@ -1,0 +1,114 @@
+{
+  "nav": {
+    "itineraries": "Itineraries",
+    "consulting": "Consulting",
+    "login": "Log in",
+    "register": "Sign up",
+    "dashboard": "My purchases",
+    "admin": "Admin",
+    "logout": "Log out"
+  },
+  "home": {
+    "hero": {
+      "title": "Travel with purpose",
+      "subtitle": "Detailed itineraries, crafted with care so you experience every destination deeply.",
+      "cta": "Explore itineraries",
+      "ctaConsulting": "Custom consulting"
+    },
+    "featured": "Featured itineraries",
+    "consulting": {
+      "title": "Want a tailor-made itinerary?",
+      "description": "Tell us your travel dreams and we'll create the perfect itinerary together.",
+      "cta": "Get started"
+    }
+  },
+  "product": {
+    "days": "days",
+    "buy": "Buy now",
+    "buyConsulting": "Book consulting",
+    "discount": "Have a discount code?",
+    "apply": "Apply",
+    "includes": "What's included?",
+    "highlights": "Highlights"
+  },
+  "dashboard": {
+    "title": "My purchases",
+    "empty": "You don't have any purchases yet. Discover our itineraries!",
+    "viewItinerary": "View itinerary",
+    "viewConsulting": "Manage consulting",
+    "purchased": "Purchased on"
+  },
+  "viewer": {
+    "day": "Day",
+    "tips": "Tips",
+    "cost": "Cost",
+    "included": "Included",
+    "meals": "Meals",
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "notes": "Day notes",
+    "practicalInfo": "Practical information",
+    "budget": "Estimated daily budget",
+    "budget_budget": "Budget",
+    "budget_mid": "Mid-range",
+    "budget_luxury": "Premium"
+  },
+  "consulting": {
+    "title": "Custom travel consulting",
+    "description": "We design your ideal trip from scratch, tailored to your tastes, pace and budget.",
+    "questionnaire": {
+      "title": "Tell us about your trip",
+      "destinations": "Which destinations would you like to visit?",
+      "duration": "How many days do you have available?",
+      "travelers": "How many people are traveling?",
+      "style": "What's your travel style?",
+      "style_options": ["Cultural & gastronomy", "Nature & adventure", "Relaxation & wellness", "Mix of everything"],
+      "budget": "What is your approximate budget per person?",
+      "interests": "What can't be missing from your trip?",
+      "other": "Anything else you'd like to share?",
+      "submit": "Submit and choose date"
+    },
+    "schedule": {
+      "title": "Choose your call date",
+      "subtitle": "Select the day and time that works best for you to speak with our team.",
+      "confirm": "Confirm booking",
+      "confirmed": "Booking confirmed! You'll receive an email with the details."
+    }
+  },
+  "auth": {
+    "login": "Log in",
+    "register": "Create account",
+    "email": "Email",
+    "password": "Password",
+    "name": "Full name",
+    "loginCta": "Sign in",
+    "registerCta": "Create account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "error": "Incorrect email or password"
+  },
+  "admin": {
+    "dashboard": "Admin panel",
+    "products": "Products",
+    "users": "Users",
+    "discounts": "Discounts",
+    "bookings": "Bookings",
+    "newProduct": "New product",
+    "save": "Save",
+    "delete": "Delete",
+    "active": "Active",
+    "inactive": "Inactive",
+    "jsonImport": "Import from JSON",
+    "jsonExample": "View JSON example"
+  },
+  "currency": {
+    "switch": "Switch currency",
+    "eur": "EUR €",
+    "usd": "USD $"
+  },
+  "language": {
+    "es": "Español",
+    "en": "English"
+  }
+}

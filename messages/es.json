@@ -1,0 +1,114 @@
+{
+  "nav": {
+    "itineraries": "Itinerarios",
+    "consulting": "Consultoría",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "dashboard": "Mis compras",
+    "admin": "Administración",
+    "logout": "Cerrar sesión"
+  },
+  "home": {
+    "hero": {
+      "title": "Viaja con propósito",
+      "subtitle": "Itinerarios detallados, diseñados con cariño para que vivas cada destino con profundidad.",
+      "cta": "Explorar itinerarios",
+      "ctaConsulting": "Consultoría a medida"
+    },
+    "featured": "Itinerarios destacados",
+    "consulting": {
+      "title": "¿Quieres un itinerario a tu medida?",
+      "description": "Cuéntanos tus sueños de viaje y creamos juntos el itinerario perfecto para ti.",
+      "cta": "Empezar"
+    }
+  },
+  "product": {
+    "days": "días",
+    "buy": "Comprar ahora",
+    "buyConsulting": "Reservar consultoría",
+    "discount": "¿Tienes un código de descuento?",
+    "apply": "Aplicar",
+    "includes": "¿Qué incluye?",
+    "highlights": "Destacados"
+  },
+  "dashboard": {
+    "title": "Mis compras",
+    "empty": "Aún no tienes ninguna compra. ¡Descubre nuestros itinerarios!",
+    "viewItinerary": "Ver itinerario",
+    "viewConsulting": "Gestionar consultoría",
+    "purchased": "Comprado el"
+  },
+  "viewer": {
+    "day": "Día",
+    "tips": "Consejos",
+    "cost": "Coste",
+    "included": "Incluido",
+    "meals": "Comidas",
+    "breakfast": "Desayuno",
+    "lunch": "Comida",
+    "dinner": "Cena",
+    "notes": "Notas del día",
+    "practicalInfo": "Información práctica",
+    "budget": "Presupuesto diario estimado",
+    "budget_budget": "Económico",
+    "budget_mid": "Medio",
+    "budget_luxury": "Premium"
+  },
+  "consulting": {
+    "title": "Consultoría de viaje a medida",
+    "description": "Diseñamos tu viaje ideal desde cero, adaptado a tus gustos, ritmo y presupuesto.",
+    "questionnaire": {
+      "title": "Cuéntanos sobre tu viaje",
+      "destinations": "¿A qué destinos te gustaría ir?",
+      "duration": "¿Cuántos días tienes disponibles?",
+      "travelers": "¿Cuántas personas viajan?",
+      "style": "¿Cuál es tu estilo de viaje?",
+      "style_options": ["Cultural y gastronómico", "Naturaleza y aventura", "Relax y bienestar", "Mezcla de todo"],
+      "budget": "¿Cuál es tu presupuesto aproximado por persona?",
+      "interests": "¿Qué no puede faltar en tu viaje?",
+      "other": "¿Algo más que quieras contarnos?",
+      "submit": "Enviar y elegir fecha"
+    },
+    "schedule": {
+      "title": "Elige tu fecha de llamada",
+      "subtitle": "Selecciona el día y hora que mejor te venga para hablar con nuestro equipo.",
+      "confirm": "Confirmar reserva",
+      "confirmed": "¡Reserva confirmada! Recibirás un correo con los detalles."
+    }
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "register": "Crear cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "name": "Nombre",
+    "loginCta": "Entrar",
+    "registerCta": "Crear cuenta",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "error": "Correo o contraseña incorrectos"
+  },
+  "admin": {
+    "dashboard": "Panel de administración",
+    "products": "Productos",
+    "users": "Usuarios",
+    "discounts": "Descuentos",
+    "bookings": "Reservas",
+    "newProduct": "Nuevo producto",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "jsonImport": "Importar desde JSON",
+    "jsonExample": "Ver ejemplo JSON"
+  },
+  "currency": {
+    "switch": "Cambiar moneda",
+    "eur": "EUR €",
+    "usd": "USD $"
+  },
+  "language": {
+    "es": "Español",
+    "en": "English"
+  }
+}
