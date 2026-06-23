@@ -1,11 +1,12 @@
-import { auth } from "@/lib/auth";
+import NextAuth from "next-auth";
+import { authConfig } from "@/auth.config";
 import { NextResponse } from "next/server";
 import type { NextAuthRequest } from "next-auth";
 
 const protectedPaths = ["/dashboard", "/viewer", "/consulting/"];
 const adminPaths = ["/admin"];
 
-export default auth(function middleware(req: NextAuthRequest) {
+export default NextAuth(authConfig).auth(function middleware(req: NextAuthRequest) {
   const { pathname } = req.nextUrl;
   const session = req.auth;
 
