@@ -17,7 +17,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Producto no encontrado" }, { status: 404 });
   }
 
-  // Check existing purchase
   const existing = await prisma.purchase.findFirst({
     where: { userId, productId, status: "COMPLETED" },
   });
@@ -25,7 +24,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Ya tienes este producto" }, { status: 409 });
   }
 
-  // Exchange rate
   let priceInCents = product.price;
   if (currency === "USD") {
     const rateRecord = await prisma.exchangeRate.findUnique({
@@ -34,11 +32,9 @@ export async function POST(req: Request) {
     priceInCents = Math.round(priceInCents * (rateRecord?.rate ?? 1.08));
   }
 
-  // Discount
   let discounts: { coupon: string }[] = [];
-  let discountCodeRecord = null;
   if (discountCode) {
-    discountCodeRecord = await prisma.discountCode.findUnique({
+    const discountCodeRecord = await prisma.discountCode.findUnique({
       where: { code: discountCode.toUpperCase() },
     });
     if (discountCodeRecord?.isActive && discountCodeRecord.stripeCouponId) {
@@ -48,28 +44,33 @@ export async function POST(req: Request) {
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
-  const checkoutSession = await stripe.checkout.sessions.create({
-    mode: "payment",
-    currency: currency.toLowerCase(),
-    line_items: [
-      {
-        price_data: {
-          currency: currency.toLowerCase(),
-          product_data: { name: product.title },
-          unit_amount: priceInCents,
+  try {
+    const checkoutSession = await stripe.checkout.sessions.create({
+      mode: "payment",
+      currency: currency.toLowerCase(),
+      line_items: [
+        {
+          price_data: {
+            currency: currency.toLowerCase(),
+            product_data: { name: product.title },
+            unit_amount: priceInCents,
+          },
+          quantity: 1,
         },
-        quantity: 1,
+      ],
+      discounts: discounts.length > 0 ? discounts : undefined,
+      metadata: {
+        userId,
+        productId: product.id,
+        discountCode: discountCode || "",
       },
-    ],
-    discounts: discounts.length > 0 ? discounts : undefined,
-    metadata: {
-      userId,
-      productId: product.id,
-      discountCode: discountCode || "",
-    },
-    success_url: `${appUrl}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${appUrl}/itineraries/${product.slug}`,
-  });
+      success_url: `${appUrl}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${appUrl}/itineraries/${product.slug}`,
+    });
 
-  return NextResponse.json({ url: checkoutSession.url });
+    return NextResponse.json({ url: checkoutSession.url });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Error al crear la sesión de pago";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }
